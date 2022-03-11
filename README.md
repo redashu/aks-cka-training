@@ -83,3 +83,38 @@ exit
 
 ```
 
+### Merging file to have more cluster info config file 
+
+```
+fire@ashutoshhs-MacBook-Air ~ % kubectl config get-contexts 
+CURRENT   NAME                          CLUSTER        AUTHINFO                             NAMESPACE
+*         aks-training                  aks-training   clusterUser_aks-final_aks-training   
+          kubernetes-admin@kubernetes   kubernetes     kubernetes-admin                    
+
+```
+
+### changing context 
+```
+kubectl config  use-context  kubernetes-admin@kubernetes
+```
+### few commands 
+
+```
+07  kubectl config get-contexts 
+ 1008  kubectl config  use-context  kubernetes-admin@kubernetes
+ 1009  chmod 644 .kube/config
+ 1010  kubectl config  use-context  kubernetes-admin@kubernetes
+ 1011  kubectl config get-contexts 
+ 1012  kubectl  get nodes
+ 1013  kubectl get  nodes
+ 1014  kubectl  get  pods
+ 1015  kubectl config get-contexts 
+ 1016  kubectl config use-context  aks-training 
+ 1017  kubectl  get  pods
+ 1018  kubectl  get  pods
+ 1019  kubectl  get  pods -w
+ 1020  kubectl  get  pods -o wide
+
+```
+
+
