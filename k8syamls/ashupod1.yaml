@@ -1,0 +1,10 @@
+apiVersion: v1 # this k8s api version 
+kind: Pod # pod related things we want to perform 
+metadata:
+ name: ashupod-1234 # name of pod 
+spec: 
+ containers:
+ - name: ashuc1 # you can also give same name 
+   image: nginx # docker image from docker hub 
+   ports:
+   - containerPort: 80 # app port 
