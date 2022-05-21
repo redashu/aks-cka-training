@@ -90,6 +90,29 @@ NAME            CLASS   HOSTS           ADDRESS        PORTS   AGE
 ashu-app-rule   nginx   www.ashu.com                   80      12s
 manoj-rt-rule   nginx   www.manoj.com   172.31.89.51   80      68s
 ```
+### history 
+
+```
+131  kubectl get  ingress
+  132  kubectl get po,svc
+  133  kubectl get ig
+  134  kubectl get ingress
+  135  host ingress-load-balancer-1832527989.us-east-1.elb.amazonaws.com
+  136  kubectl get ingress
+  137  kubectl get ingress manoj-rt-rule  -oyaml
+  138  cat  ashuroute.yaml 
+  139  kubectl get  ingress
+  140  cat  ashuroute.yaml 
+  141  cp ashuroute.yaml rul1.yaml
+  142  vim rul1.yaml 
+  143  kubectl create -f rul1.yaml 
+  144  vim rul1.yaml 
+  145  kubectl create -f rul1.yaml 
+  146  kubectl get ingress
+  147  cat rul1.yaml 
+  148  kubectl get ingress
+```
+
 
 
 
