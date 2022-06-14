@@ -140,3 +140,82 @@ deployment "webapp" successfully rolled out
 
 ```
 
+### updating deployment image using edit 
+
+```
+kubectl edit deploy  webapp 
+deployment.apps/webapp edited
+fire@ashutoshhs-MacBook-Air deployment % kubectl rollout  status deploy webapp 
+Waiting for deployment "webapp" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "webapp" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "webapp" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "webapp" rollout to finish: 4 of 5 updated replicas are available...
+```
+
+### in reality to maintain versions deployment creates a different variations of RS 
+
+```
+ kubectl  get  rs
+NAME                DESIRED   CURRENT   READY   AGE
+webapp-6849787f49   0         0         0       17m
+webapp-d5bc8c444    5         5         5       7m21s
+```
+
+###
+
+```
+ kubectl  get  po 
+NAME                     READY   STATUS    RESTARTS   AGE
+webapp-d5bc8c444-jr2sb   1/1     Running   0          2m44s
+webapp-d5bc8c444-l57xm   1/1     Running   0          2m42s
+webapp-d5bc8c444-pstn6   1/1     Running   0          2m42s
+webapp-d5bc8c444-vdxdb   1/1     Running   0          2m44s
+webapp-d5bc8c444-vvc84   1/1     Running   0          2m44s
+```
+
+### rollback to particular revision number 
+
+```
+kubectl  rollout undo  deploy webapp --to-revision=3    
+deployment.apps/webapp rolled back
+
+```
+
+### rollout more features 
+
+```
+kubectl  rollout -h                    
+Manage the rollout of one or many resources.
+  
+ Valid resource types include:
+
+  *  deployments
+  *  daemonsets
+  *  statefulsets
+
+Examples:
+  # Rollback to the previous deployment
+  kubectl rollout undo deployment/abc
+  
+  # Check the rollout status of a daemonset
+  kubectl rollout status daemonset/foo
+  
+  # Restart a deployment
+  kubectl rollout restart deployment/abc
+  
+  # Restart deployments with the app=nginx label
+  kubectl rollout restart deployment --selector=app=nginx
+
+Available Commands:
+  history       View rollout history
+  pause         Mark the provided resource as paused
+  restart       Restart a resource
+  resume        Resume a paused resource
+  status        Show the status of the rollout
+  undo          Undo a previous rollout
+
+
+```
+
+
+
