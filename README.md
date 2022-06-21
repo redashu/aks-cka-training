@@ -212,4 +212,32 @@ default   0         4d23h
 
 ```
 
+### RBAC final 
+
+```
+ kubectl config get-contexts 
+CURRENT   NAME                  CLUSTER            AUTHINFO   NAMESPACE
+*         surbhi-access         ashu-k8s-cluster   default    surbhi-project
+          surbhi-access-power   ashu-k8s-cluster   power      surbhi-project
+[surbhi@control-plane ~]$ kubectl  get po 
+NAME   READY   STATUS    RESTARTS   AGE
+s1     1/1     Running   0          10m
+[surbhi@control-plane ~]$ kubectl  get svc
+NAME   TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
+svc1   NodePort   10.103.0.83   <none>        80:30221/TCP   9m28s
+[surbhi@control-plane ~]$ 
+[surbhi@control-plane ~]$ kubectl  config use-context  surbhi-access-power
+Switched to context "surbhi-access-power".
+[surbhi@control-plane ~]$ kubectl config get-contexts 
+CURRENT   NAME                  CLUSTER            AUTHINFO   NAMESPACE
+          surbhi-access         ashu-k8s-cluster   default    surbhi-project
+*         surbhi-access-power   ashu-k8s-cluster   power      surbhi-project
+[surbhi@control-plane ~]$ kubectl  get po 
+Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:surbhi-project:power" cannot list resource "pods" in API group "" in the namespace "surbhi-project"
+[surbhi@control-plane ~]$ kubectl  get svc
+Error from server (Forbidden): services is forbidden: User "system:serviceaccount:surbhi-project:power" cannot list resource "services" in API group "" in the namespace "surbhi-project"
+[surbhi@control-plane ~]$ 
+
+```
+
 
